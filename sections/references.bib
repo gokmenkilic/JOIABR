@@ -1,15 +1,6 @@
 % ============================================================
-%  references.bib
-%  All citations used across the JIABR paper.
 %  Harvard (author-date) style via natbib / apalike.
-%
-%  HOW TO ADD A NEW REFERENCE:
-%   1. Add a new @article / @book / @misc block below.
-%   2. Use a descriptive key: authorYEARkeyword (e.g., smith2023ml)
-%   3. Cite in text with \citep{key} or \citet{key}.
 % ============================================================
-
-% ── A ───────────────────────────────────────────────────────
 
 @article{ahmad2013regulatory,
   author  = {Ahmad, A. U. F.},
@@ -95,8 +86,6 @@
   doi     = {10.1186/1475-925x-5-51}
 }
 
-% ── B ───────────────────────────────────────────────────────
-
 @article{bodie1984nominal,
   author  = {Bodie, Z. and Kane, A. and McDonald, R.},
   title   = {Why Haven't Nominal Rates Declined?},
@@ -106,6 +95,15 @@
   pages   = {16--27},
   year    = {1984},
   doi     = {10.2469/faj.v40.n2.16}
+}
+
+@book{bodie2014investments,
+  author    = {Bodie, Zvi and Kane, Alex and Marcus, Alan J.},
+  year      = {2014},
+  title     = {Investments},
+  edition   = {10},
+  publisher = {McGraw-Hill Education},
+  note      = {NOTE: Chapter 4 cites Bodie, Kane and Marcus (2014); the thesis reference list appears to contain a mismatched Bodie, Kane and McDonald (1984) entry}
 }
 
 @article{borgogno2019data,
@@ -119,12 +117,24 @@
   doi     = {10.1016/j.clsr.2019.03.008}
 }
 
-@misc{blossom2023halal,
-  author       = {{Blossom Finance}},
-  title        = {Halal Microfinance for Everyone},
-  year         = {2023},
-  howpublished = {\url{https://www.blossomfinance.com}},
-  note         = {Accessed 10 June 2023}
+@misc{brazil2020open,
+  author       = {{Central Bank of Brazil}},
+  title        = {Open Banking},
+  year         = {2020},
+  howpublished = {\url{https://www.bcb.gov.br/en/financialstability/}},
+  note         = {Accessed 27 June 2022}
+}
+
+@article{breiman2001random,
+  author  = {Breiman, Leo},
+  year    = {2001},
+  title   = {Random Forests},
+  journal = {Machine Learning},
+  volume  = {45},
+  number  = {1},
+  pages   = {5--32},
+  doi     = {10.1023/A:1010933404324},
+  note    = {NOTE:}
 }
 
 @article{briones2022open,
@@ -147,8 +157,6 @@
   year    = {2022},
   doi     = {10.1016/j.jfds.2022.05.003}
 }
-
-% ── C ───────────────────────────────────────────────────────
 
 @misc{cbfo2023fintech,
   author       = {{CBFO}},
@@ -220,6 +228,14 @@
   year    = {2009}
 }
 
+@misc{eu2015directive,
+  author       = {{European Commission}},
+  title        = {Directive ({EU}) 2015/2366 of the European Parliament and of the Council on Payment Services in the Internal Market},
+  year         = {2015},
+  howpublished = {\url{https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX\%3A32015L2366}},
+  note         = {Accessed 6 June 2022}
+}
+
 @article{cortes1995support,
   author  = {Cortes, C. and Vapnik, V.},
   title   = {Support-Vector Networks},
@@ -229,8 +245,6 @@
   pages   = {273--297},
   year    = {1995}
 }
-
-% ── D ───────────────────────────────────────────────────────
 
 @article{dawood2022business,
   author  = {Dawood, H. and Al Zadjali, D. F. and Al Rawahi, M. and Karim, D. S. and Hazik, D. M.},
@@ -259,13 +273,35 @@
   year      = {2018}
 }
 
-% ── E ───────────────────────────────────────────────────────
+@online{doe2023lstm,
+  author  = {Doe, J.},
+  year    = {2023},
+  title   = {Exploring Different Types of LSTMs},
+  date    = {2023-03-01},
+  url     = {https://medium.com/analytics-vidhya/exploring-different-types-of-lstms-6109bcb037c4},
+  organization = {Analytics Vidhya}
+}
 
 @book{elgamal2006islamic,
   author    = {El-Gamal, M. A.},
   title     = {Islamic Finance: Law, Economics, and Practice},
   publisher = {Cambridge University Press},
   year      = {2006}
+}
+
+@misc{elgari2008islamic,
+  author = {Elgari, Mohamed Ali},
+  year   = {2008},
+  title  = {Islamic Equity Investment},
+  note   = {NOTE:}
+}
+
+@article{elton2009examination,
+  author  = {Elton, Edwin J. and Gruber, Martin J. and Blake, Christopher R.},
+  year    = {2009},
+  title   = {An Examination of Mutual Fund Timing Using Monthly Holdings Data},
+  journal = {SSRN Electronic Journal},
+  doi     = {10.2139/ssrn.1343246}
 }
 
 @misc{ethis2021about,
@@ -276,25 +312,451 @@
   note         = {Accessed 25 June 2022}
 }
 
-@misc{eu2015directive,
-  author       = {{European Commission}},
-  title        = {Directive ({EU}) 2015/2366 of the European Parliament and of the Council on Payment Services in the Internal Market},
-  year         = {2015},
-  howpublished = {\url{https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX\%3A32015L2366}},
-  note         = {Accessed 6 June 2022}
+@misc{blossom2023halal,
+  author       = {{Blossom Finance}},
+  title        = {Halal Microfinance for Everyone},
+  year         = {2023},
+  howpublished = {\url{https://www.blossomfinance.com}},
+  note         = {Accessed 10 June 2023}
 }
 
-% ── B (Brazil) ───────────────────────────────────────────────
-
-@misc{brazil2020open,
-  author       = {{Central Bank of Brazil}},
-  title        = {Open Banking},
-  year         = {2020},
-  howpublished = {\url{https://www.bcb.gov.br/en/financialstability/}},
-  note         = {Accessed 27 June 2022}
+@article{franklin2005elements,
+  author  = {Franklin, James},
+  year    = {2005},
+  title   = {The Elements of Statistical Learning: Data Mining, Inference and Prediction},
+  journal = {The Mathematical Intelligencer},
+  volume  = {27},
+  number  = {2},
+  pages   = {83--85},
+  doi     = {10.1007/bf02985802}
 }
 
-% ── ADD NEW REFERENCES BELOW THIS LINE ──────────────────────
-% Format: @type{key, fields}
-% Keep entries alphabetical by first author surname.
-% ────────────────────────────────────────────────────────────
+@article{gebreteklezgi2023principal,
+  author  = {{Gebre Teklezgi L}, M.},
+  year    = {2023},
+  title   = {Principal Component Analysis of Hierarchical and Multivariate Data},
+  journal = {Annals of Advanced Biomedical Sciences},
+  volume  = {6},
+  number  = {1},
+  doi     = {10.23880/aabsc-16000209}
+}
+
+@article{graves2005framewise,
+  author  = {Graves, Alex and Schmidhuber, J{\"u}rgen},
+  year    = {2005},
+  title   = {Framewise Phoneme Classification with Bidirectional LSTM Networks},
+  journal = {IEEE Transactions on Neural Networks},
+  volume  = {16},
+  number  = {5},
+  pages   = {1272--1280}
+}
+
+@online{gunay2023random,
+  author  = {Gunay, D.},
+  year    = {2023},
+  title   = {Random Forest},
+  url     = {https://medium.com/@denizgunay/random-forest-af5bde5d7e1e},
+  organization = {Medium},
+  urldate = {2024-04-04}
+}
+
+@article{hamayel2021novel,
+  author  = {Hamayel, Mohammad J. and Owda, Amani Y.},
+  year    = {2021},
+  title   = {A Novel Cryptocurrency Price Prediction Model Using GRU, LSTM and Bi-LSTM Machine Learning Algorithms},
+  journal = {AI},
+  volume  = {2},
+  number  = {4},
+  pages   = {477--496},
+  doi     = {10.3390/ai2040030}
+}
+
+@article{heaton2017deep,
+  author  = {Heaton, J.},
+  year    = {2017},
+  title   = {Ian Goodfellow, Yoshua Bengio, and Aaron Courville: Deep Learning},
+  journal = {Genetic Programming and Evolvable Machines},
+  volume  = {19},
+  number  = {1--2},
+  pages   = {305--307},
+  doi     = {10.1007/s10710-017-9314-z}
+}
+
+@article{hochreiter1997long,
+  author  = {Hochreiter, Sepp and Schmidhuber, J{\"u}rgen},
+  year    = {1997},
+  title   = {Long Short-Term Memory},
+  journal = {Neural Computation},
+  volume  = {9},
+  number  = {8},
+  pages   = {1735--1780}
+}
+
+@article{hota2021comparative,
+  author  = {Hota, L. and Dash, P. K.},
+  year    = {2021},
+  title   = {Comparative Analysis of Stock Price Prediction by ANN and RF Model},
+  journal = {Computational Intelligence and Machine Learning},
+  volume  = {2},
+  number  = {1},
+  pages   = {1--9},
+  doi     = {10.36647/ciml/02.01.a001}
+}
+
+@article{jacquier2002optimal,
+  author  = {Jacquier, Eric and Kane, Alex and Marcus, Alan J.},
+  year    = {2002},
+  title   = {Optimal Forecasts of Long-Term Returns: Geometric, Arithmetic, or Other Means},
+  journal = {SSRN Electronic Journal},
+  doi     = {10.2139/ssrn.353242}
+}
+
+@article{jensen1968performance,
+  author  = {Jensen, Michael C.},
+  year    = {1968},
+  title   = {The Performance of Mutual Funds in the Period 1945--1964},
+  journal = {The Journal of Finance},
+  volume  = {23},
+  number  = {2},
+  pages   = {389--416}
+}
+
+@article{ji2022stock,
+  author  = {Ji, H.},
+  year    = {2022},
+  title   = {Stock Price Prediction Based on SVM, LSTM, ARIMA},
+  journal = {BCP Business \& Management},
+  volume  = {35},
+  pages   = {267--272},
+  doi     = {10.54691/bcpbm.v35i.3302}
+}
+
+@article{jolliffe2016principal,
+  author  = {Jolliffe, Ian T. and Cadima, Jorge},
+  year    = {2016},
+  title   = {Principal Component Analysis: A Review and Recent Developments},
+  journal = {Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences},
+  volume  = {374},
+  number  = {2065},
+  pages   = {20150202},
+  doi     = {10.1098/rsta.2015.0202}
+}
+
+@article{lecun1998gradient,
+  author  = {LeCun, Yann and Bottou, L{\'e}on and Bengio, Yoshua and Haffner, Patrick},
+  year    = {1998},
+  title   = {Gradient-Based Learning Applied to Document Recognition},
+  journal = {Proceedings of the IEEE},
+  volume  = {86},
+  number  = {11},
+  pages   = {2278--2324},
+  doi     = {10.1109/5.726791},
+  note    = {NOTE:}
+}
+
+@article{lo1988maximum,
+  author  = {Lo, Andrew W.},
+  year    = {1988},
+  title   = {Maximum Likelihood Estimation of Generalized It{\^o} Processes with Discretely Sampled Data},
+  journal = {Econometric Theory},
+  volume  = {4},
+  number  = {2},
+  pages   = {231--247},
+  doi     = {10.1017/S0266466600012044}
+}
+
+@book{lo2017adaptive,
+  author    = {Lo, Andrew W.},
+  year      = {2017},
+  title     = {Adaptive Markets: Financial Evolution at the Speed of Thought},
+  publisher = {Princeton University Press},
+  note      = {NOTE:}
+}
+
+@article{lu2023lstm,
+  author  = {Lu, H.},
+  year    = {2023},
+  title   = {LSTM-Based Stock Price Prediction},
+  journal = {Frontiers in Computing and Intelligent Systems},
+  volume  = {4},
+  number  = {2},
+  pages   = {68--71},
+  doi     = {10.54097/fcis.v4i2.10208}
+}
+
+@article{markowitz1952portfolio,
+  author  = {Markowitz, Harry},
+  year    = {1952},
+  title   = {Portfolio Selection},
+  journal = {The Journal of Finance},
+  volume  = {7},
+  number  = {1},
+  pages   = {77--91},
+  doi     = {10.1111/j.1540-6261.1952.tb01525.x},
+  note    = {NOTE: cited in Chapters 4--5 but not found in the thesis reference list}
+}
+
+@book{mitchell1997machine,
+  author    = {Mitchell, Tom M.},
+  year      = {1997},
+  title     = {Machine Learning},
+  publisher = {McGraw Hill}
+}
+
+@article{mnih2015human,
+  author  = {Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David and Graves, Alex and Antonoglou, Ioannis and Wierstra, Daan and Riedmiller, Martin},
+  year    = {2015},
+  title   = {Human-level Control through Deep Reinforcement Learning},
+  journal = {Nature},
+  volume  = {518},
+  number  = {7540},
+  pages   = {529--533}
+}
+
+@article{murugesan2022forecasting,
+  author  = {Murugesan, R. and Mishra, Eva and Krishnan, Akash Hari},
+  year    = {2022},
+  title   = {Forecasting Agricultural Commodities Prices Using Deep Learning-Based Models: Basic LSTM, Bi-LSTM, Stacked LSTM, CNN LSTM, and Convolutional LSTM},
+  journal = {International Journal of Sustainable Agricultural Management and Informatics},
+  volume  = {8},
+  number  = {3},
+  pages   = {242--277},
+  doi     = {10.1504/IJSAMI.2022.125757},
+  note    = {NOTE:}
+}
+
+@article{papadimitriou2020forecasting,
+  author  = {Papadimitriou, T. and Gogas, P. and Athanasiou, A. F.},
+  year    = {2020},
+  title   = {Forecasting S\&P 500 Spikes: An SVM Approach},
+  journal = {Digital Finance},
+  volume  = {2},
+  number  = {3--4},
+  pages   = {241--258},
+  doi     = {10.1007/s42521-020-00024-0}
+}
+
+@article{pearson1901lines,
+  author  = {Pearson, Karl},
+  year    = {1901},
+  title   = {LIII. On Lines and Planes of Closest Fit to Systems of Points in Space},
+  journal = {The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science},
+  volume  = {2},
+  number  = {11},
+  pages   = {559--572},
+  doi     = {10.1080/14786440109462720}
+}
+
+@article{plantinga2001risk,
+  author  = {Plantinga, A. and de Groot, S.},
+  year    = {2001},
+  title   = {Risk-Adjusted Performance Measures and Implied Risk-Attitudes},
+  journal = {SSRN Electronic Journal},
+  doi     = {10.2139/ssrn.289193}
+}
+
+@article{prakash2020comparison,
+  author  = {Prakash, A. A.},
+  year    = {2020},
+  title   = {A Study on Comparison of Index Returns and Returns of Portfolio Created Using Equal Weight Age Index Method},
+  journal = {International Journal of Advances in Management and Economics},
+  volume  = {9},
+  number  = {2},
+  pages   = {28--31},
+  doi     = {10.31270/ijame/v09/i02/2020/3}
+}
+
+@article{qing2009probabilistic,
+  author  = {Qing, X. Y.},
+  year    = {2009},
+  title   = {Probabilistic Two-Dimensional Principal Component Analysis},
+  journal = {Acta Automatica Sinica},
+  volume  = {34},
+  number  = {3},
+  pages   = {353--359},
+  doi     = {10.3724/sp.j.1004.2008.00353}
+}
+
+@article{rao2010handbook,
+  author  = {Rao, S. S.},
+  year    = {2010},
+  title   = {Handbook of Financial Time Series},
+  journal = {Journal of Time Series Analysis},
+  volume  = {31},
+  number  = {1},
+  pages   = {64--64},
+  doi     = {10.1111/j.1467-9892.2009.00640.x}
+}
+
+@article{sain1996nature,
+  author  = {Sain, Stephan R. and Vapnik, Vladimir N.},
+  year    = {1996},
+  title   = {The Nature of Statistical Learning Theory},
+  journal = {Technometrics},
+  volume  = {38},
+  number  = {4},
+  pages   = {409},
+  doi     = {10.2307/1271324}
+}
+
+@article{schafer2002missing,
+  author  = {Schafer, Joseph L. and Graham, John W.},
+  year    = {2002},
+  title   = {Missing Data: Our View of the State of the Art},
+  journal = {Psychological Methods},
+  volume  = {7},
+  number  = {2},
+  pages   = {147--177},
+  doi     = {10.1037/1082-989X.7.2.147}
+}
+
+@article{sen2023equal,
+  author  = {Sen, J. and Sen, A.},
+  year    = {2023},
+  title   = {A Study on the Performance Evaluation of Equal-Weight Portfolio and Optimum Risk Portfolio on the Indian Stock Market},
+  journal = {International Journal of Business Forecasting and Marketing Intelligence},
+  volume  = {1},
+  number  = {1},
+  doi     = {10.1504/ijbfmi.2023.10060476}
+}
+
+@article{shadwick2002universal,
+  author  = {Shadwick, William F. and Keating, Con},
+  year    = {2002},
+  title   = {A Universal Performance Measure},
+  journal = {Journal of Performance Measurement},
+  volume  = {6},
+  number  = {3},
+  pages   = {59--84}
+}
+
+@article{sharpe1964capital,
+  author  = {Sharpe, William F.},
+  year    = {1964},
+  title   = {Capital Asset Prices: A Theory of Market Equilibrium under Conditions of Risk},
+  journal = {The Journal of Finance},
+  volume  = {19},
+  number  = {3},
+  pages   = {425},
+  doi     = {10.2307/2977928}
+}
+
+@article{sharpe1966mutual,
+  author  = {Sharpe, William F.},
+  year    = {1966},
+  title   = {Mutual Fund Performance},
+  journal = {The Journal of Business},
+  volume  = {39},
+  number  = {1},
+  pages   = {119--138},
+  note    = {NOTE}
+}
+
+@article{shi2011stock,
+  author  = {Shi, J. Y. and Li, X. and Li, Y. X.},
+  year    = {2011},
+  title   = {Stock Price Index Prediction Based on Improved SVM},
+  journal = {Advanced Materials Research},
+  volume  = {267},
+  pages   = {468--471},
+  doi     = {10.4028/www.scientific.net/amr.267.468}
+}
+
+@article{sick1988corporate,
+  author  = {Sick, Gordon and Ross, Stephen A. and Westerfield, Randolph W.},
+  year    = {1988},
+  title   = {Corporate Finance},
+  journal = {The Journal of Finance},
+  volume  = {43},
+  number  = {2},
+  pages   = {533},
+  doi     = {10.2307/2328476}
+}
+
+@article{sortino1994performance,
+  author  = {Sortino, Frank A. and Price, Lee N.},
+  year    = {1994},
+  title   = {Performance Measurement in a Downside Risk Framework},
+  journal = {The Journal of Investing},
+  volume  = {3},
+  number  = {3},
+  pages   = {59--64}
+}
+
+@article{taljaard2020equal,
+  author  = {Taljaard, B. and Mare, E.},
+  year    = {2020},
+  title   = {Why Has the Equal Weight Portfolio Underperformed and What Can We Do About It?},
+  journal = {SSRN Electronic Journal},
+  doi     = {10.2139/ssrn.3608632}
+}
+
+@article{treynor1965rate,
+  author  = {Treynor, Jack L.},
+  year    = {1965},
+  title   = {How to Rate Management of Investment Funds},
+  journal = {Harvard Business Review},
+  volume  = {43},
+  number  = {1},
+  pages   = {63--75}
+}
+
+@article{vanhome1977fundamentals,
+  author  = {Van Home, J. C.},
+  year    = {1977},
+  title   = {Fundamentals of Financial Management},
+  journal = {Health Care Management Review},
+  volume  = {2},
+  number  = {4},
+  pages   = {84},
+  doi     = {10.1097/00004010-197702040-00014},
+  note    = {NOTE}
+}
+
+@article{wu2023stock,
+  author  = {Wu, Y.},
+  year    = {2023},
+  title   = {Stock Price Prediction Based on Simple Decision Tree Random Forest and XGBoost},
+  journal = {BCP Business \& Management},
+  volume  = {38},
+  pages   = {3383--3388},
+  doi     = {10.54691/bcpbm.v38i.4311}
+}
+
+@article{young1991calmar,
+  author  = {Young, Terry W.},
+  year    = {1991},
+  title   = {Calmar Ratio: A Smoother Tool},
+  journal = {Futures Magazine}
+}
+
+@article{zhang2023stock,
+  author  = {Zhang, Z.},
+  year    = {2023},
+  title   = {Stock Price Prediction Based on LSTM in Python},
+  journal = {BCP Business \& Management},
+  volume  = {40},
+  pages   = {335--342},
+  doi     = {10.54691/bcpbm.v40i.4398}
+}
+
+@article{zhu2023stock,
+  author  = {Zhu, Y.},
+  year    = {2023},
+  title   = {Stock Price Prediction Based on LSTM and XGBoost Combination Model},
+  journal = {Transactions on Computer Science and Intelligent Systems Research},
+  volume  = {1},
+  pages   = {94--109},
+  doi     = {10.62051/z6dere47}
+}
+
+@article{zuccolotto2011symbolic,
+  author  = {Zuccolotto, Paola},
+  year    = {2011},
+  title   = {Symbolic Missing Data Imputation in Principal Component Analysis},
+  journal = {Statistical Analysis and Data Mining: The ASA Data Science Journal},
+  volume  = {4},
+  number  = {2},
+  pages   = {171--183},
+  doi     = {10.1002/sam.10101}
+}
