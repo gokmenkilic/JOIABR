@@ -4,7 +4,7 @@ This section presents the empirical results of the machine learning and deep lea
 
 \subsection{Hyperparameter tuning results}
 
-Table~\ref{tab:tuning-results} reports the main hyperparameter-tuning results for the LSTM and XGBoost models. For the LSTM model, different batch-size and neuron configurations were tested. For the XGBoost model, different maximum-depth and estimator configurations were evaluated. The results are reported using MAE, MSE and RMSE.
+Bold values in Table~\ref{tab:tuning-results} indicate the best-performing configuration within each model and error metric group. Since MAE, MSE and RMSE are error metrics, lower values indicate better predictive performance.
 
 \begin{landscape}
 \begin{longtable}{llcccc}
@@ -26,8 +26,12 @@ Table~\ref{tab:tuning-results} reports the main hyperparameter-tuning results fo
 \endfoot
 
 \bottomrule
-\multicolumn{6}{l}{\footnotesize Source: Author's own calculations.} \\
+\multicolumn{6}{l}{\footnotesize Source: Author's own calculations. Bold values indicate the best-performing configuration within each model--metric group.} \\
 \endlastfoot
+
+% ============================================================
+% Single-layer LSTM - MAE
+% ============================================================
 
 LSTM & Single-layer & Batch size 8   & 4 neurons  & MAE  & 0.2058 \\
 LSTM & Single-layer & Batch size 8   & 8 neurons  & MAE  & 0.2122 \\
@@ -54,45 +58,157 @@ LSTM & Single-layer & Batch size 128 & 8 neurons  & MAE  & 0.2086 \\
 LSTM & Single-layer & Batch size 128 & 16 neurons & MAE  & 0.2068 \\
 LSTM & Single-layer & Batch size 128 & 32 neurons & MAE  & 0.2110 \\
 LSTM & Single-layer & Batch size 128 & 64 neurons & MAE  & 0.2059 \\
-LSTM & Single-layer & Batch size 256 & 4 neurons  & MAE  & 0.1989 \\
+LSTM & Single-layer & Batch size 256 & 4 neurons  & MAE  & \textbf{0.1989} \\
 LSTM & Single-layer & Batch size 256 & 8 neurons  & MAE  & 0.2041 \\
 LSTM & Single-layer & Batch size 256 & 16 neurons & MAE  & 0.2075 \\
 LSTM & Single-layer & Batch size 256 & 32 neurons & MAE  & 0.2062 \\
 LSTM & Single-layer & Batch size 256 & 64 neurons & MAE  & 0.2098 \\
 
+% ============================================================
+% Single-layer LSTM - MSE
+% ============================================================
+
+LSTM & Single-layer & Batch size 8   & 4 neurons  & MSE  & 0.0688 \\
+LSTM & Single-layer & Batch size 8   & 8 neurons  & MSE  & 0.0740 \\
+LSTM & Single-layer & Batch size 8   & 16 neurons & MSE  & 0.0689 \\
+LSTM & Single-layer & Batch size 8   & 32 neurons & MSE  & 0.0724 \\
+LSTM & Single-layer & Batch size 8   & 64 neurons & MSE  & 0.0737 \\
+LSTM & Single-layer & Batch size 16  & 4 neurons  & MSE  & 0.0747 \\
+LSTM & Single-layer & Batch size 16  & 8 neurons  & MSE  & 0.0720 \\
+LSTM & Single-layer & Batch size 16  & 16 neurons & MSE  & 0.0670 \\
+LSTM & Single-layer & Batch size 16  & 32 neurons & MSE  & 0.0750 \\
+LSTM & Single-layer & Batch size 16  & 64 neurons & MSE  & 0.0695 \\
+LSTM & Single-layer & Batch size 32  & 4 neurons  & MSE  & 0.0702 \\
+LSTM & Single-layer & Batch size 32  & 8 neurons  & MSE  & 0.0719 \\
+LSTM & Single-layer & Batch size 32  & 16 neurons & MSE  & 0.0702 \\
+LSTM & Single-layer & Batch size 32  & 32 neurons & MSE  & 0.0691 \\
+LSTM & Single-layer & Batch size 32  & 64 neurons & MSE  & 0.0723 \\
+LSTM & Single-layer & Batch size 64  & 4 neurons  & MSE  & 0.0713 \\
+LSTM & Single-layer & Batch size 64  & 8 neurons  & MSE  & 0.0703 \\
+LSTM & Single-layer & Batch size 64  & 16 neurons & MSE  & 0.0714 \\
+LSTM & Single-layer & Batch size 64  & 32 neurons & MSE  & 0.0736 \\
+LSTM & Single-layer & Batch size 64  & 64 neurons & MSE  & 0.0706 \\
+LSTM & Single-layer & Batch size 128 & 4 neurons  & MSE  & \textbf{0.0639} \\
+LSTM & Single-layer & Batch size 128 & 8 neurons  & MSE  & 0.0673 \\
+LSTM & Single-layer & Batch size 128 & 16 neurons & MSE  & 0.0707 \\
+LSTM & Single-layer & Batch size 128 & 32 neurons & MSE  & 0.0739 \\
+LSTM & Single-layer & Batch size 128 & 64 neurons & MSE  & 0.0699 \\
+LSTM & Single-layer & Batch size 256 & 4 neurons  & MSE  & 0.0644 \\
+LSTM & Single-layer & Batch size 256 & 8 neurons  & MSE  & 0.0676 \\
+LSTM & Single-layer & Batch size 256 & 16 neurons & MSE  & 0.0709 \\
+LSTM & Single-layer & Batch size 256 & 32 neurons & MSE  & 0.0699 \\
+LSTM & Single-layer & Batch size 256 & 64 neurons & MSE  & 0.0727 \\
+
+% ============================================================
+% Single-layer LSTM - RMSE
+% ============================================================
+
+LSTM & Single-layer & Batch size 8   & 4 neurons  & RMSE & 0.2624 \\
+LSTM & Single-layer & Batch size 8   & 8 neurons  & RMSE & 0.2721 \\
+LSTM & Single-layer & Batch size 8   & 16 neurons & RMSE & 0.2625 \\
+LSTM & Single-layer & Batch size 8   & 32 neurons & RMSE & 0.2691 \\
+LSTM & Single-layer & Batch size 8   & 64 neurons & RMSE & 0.2716 \\
+LSTM & Single-layer & Batch size 16  & 4 neurons  & RMSE & 0.2734 \\
+LSTM & Single-layer & Batch size 16  & 8 neurons  & RMSE & 0.2684 \\
+LSTM & Single-layer & Batch size 16  & 16 neurons & RMSE & 0.2588 \\
+LSTM & Single-layer & Batch size 16  & 32 neurons & RMSE & 0.2739 \\
+LSTM & Single-layer & Batch size 16  & 64 neurons & RMSE & 0.2637 \\
+LSTM & Single-layer & Batch size 32  & 4 neurons  & RMSE & 0.2650 \\
+LSTM & Single-layer & Batch size 32  & 8 neurons  & RMSE & 0.2682 \\
+LSTM & Single-layer & Batch size 32  & 16 neurons & RMSE & 0.2650 \\
+LSTM & Single-layer & Batch size 32  & 32 neurons & RMSE & 0.2629 \\
+LSTM & Single-layer & Batch size 32  & 64 neurons & RMSE & 0.2689 \\
+LSTM & Single-layer & Batch size 64  & 4 neurons  & RMSE & 0.2670 \\
+LSTM & Single-layer & Batch size 64  & 8 neurons  & RMSE & 0.2652 \\
+LSTM & Single-layer & Batch size 64  & 16 neurons & RMSE & 0.2673 \\
+LSTM & Single-layer & Batch size 64  & 32 neurons & RMSE & 0.2713 \\
+LSTM & Single-layer & Batch size 64  & 64 neurons & RMSE & 0.2657 \\
+LSTM & Single-layer & Batch size 128 & 4 neurons  & RMSE & \textbf{0.2527} \\
+LSTM & Single-layer & Batch size 128 & 8 neurons  & RMSE & 0.2595 \\
+LSTM & Single-layer & Batch size 128 & 16 neurons & RMSE & 0.2659 \\
+LSTM & Single-layer & Batch size 128 & 32 neurons & RMSE & 0.2719 \\
+LSTM & Single-layer & Batch size 128 & 64 neurons & RMSE & 0.2644 \\
+LSTM & Single-layer & Batch size 256 & 4 neurons  & RMSE & 0.2538 \\
+LSTM & Single-layer & Batch size 256 & 8 neurons  & RMSE & 0.2601 \\
+LSTM & Single-layer & Batch size 256 & 16 neurons & RMSE & 0.2662 \\
+LSTM & Single-layer & Batch size 256 & 32 neurons & RMSE & 0.2644 \\
+LSTM & Single-layer & Batch size 256 & 64 neurons & RMSE & 0.2697 \\
+
+% ============================================================
+% Two-layer LSTM - MAE
+% ============================================================
+
 LSTM & Two-layer & 256 neurons & Dropout 0.1 & MAE & 0.2195 \\
 LSTM & Two-layer & 512 neurons & Dropout 0.1 & MAE & 0.2198 \\
-LSTM & Two-layer & 256 neurons & Dropout 0.2 & MAE & 0.2191 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.2 & MAE & \textbf{0.2191} \\
 LSTM & Two-layer & 512 neurons & Dropout 0.2 & MAE & 0.2224 \\
-LSTM & Two-layer & 256 neurons & Dropout 0.3 & MAE & 0.2191 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.3 & MAE & \textbf{0.2191} \\
 LSTM & Two-layer & 512 neurons & Dropout 0.3 & MAE & 0.2211 \\
 LSTM & Two-layer & 256 neurons & Dropout 0.4 & MAE & 0.2228 \\
 LSTM & Two-layer & 512 neurons & Dropout 0.4 & MAE & 0.2419 \\
 
+% ============================================================
+% Two-layer LSTM - MSE
+% ============================================================
+
+LSTM & Two-layer & 256 neurons & Dropout 0.1 & MSE & 0.0794 \\
+LSTM & Two-layer & 512 neurons & Dropout 0.1 & MSE & 0.0796 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.2 & MSE & \textbf{0.0782} \\
+LSTM & Two-layer & 512 neurons & Dropout 0.2 & MSE & 0.0801 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.3 & MSE & \textbf{0.0782} \\
+LSTM & Two-layer & 512 neurons & Dropout 0.3 & MSE & 0.0799 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.4 & MSE & 0.0794 \\
+LSTM & Two-layer & 512 neurons & Dropout 0.4 & MSE & 0.0888 \\
+
+% ============================================================
+% Two-layer LSTM - RMSE
+% ============================================================
+
+LSTM & Two-layer & 256 neurons & Dropout 0.1 & RMSE & 0.2818 \\
+LSTM & Two-layer & 512 neurons & Dropout 0.1 & RMSE & 0.2821 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.2 & RMSE & \textbf{0.2797} \\
+LSTM & Two-layer & 512 neurons & Dropout 0.2 & RMSE & 0.2830 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.3 & RMSE & \textbf{0.2797} \\
+LSTM & Two-layer & 512 neurons & Dropout 0.3 & RMSE & 0.2827 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.4 & RMSE & 0.2818 \\
+LSTM & Two-layer & 512 neurons & Dropout 0.4 & RMSE & 0.2980 \\
+
+% ============================================================
+% XGBoost - MAE
+% ============================================================
+
 XGBoost & Tree boosting & Max depth 3 & 50 estimators  & MAE  & 0.1629 \\
 XGBoost & Tree boosting & Max depth 3 & 100 estimators & MAE  & 0.1827 \\
 XGBoost & Tree boosting & Max depth 3 & 150 estimators & MAE  & 0.1938 \\
-XGBoost & Tree boosting & Max depth 5 & 50 estimators  & MAE  & 0.1619 \\
+XGBoost & Tree boosting & Max depth 5 & 50 estimators  & MAE  & \textbf{0.1619} \\
 XGBoost & Tree boosting & Max depth 5 & 100 estimators & MAE  & 0.2027 \\
 XGBoost & Tree boosting & Max depth 5 & 150 estimators & MAE  & 0.2277 \\
-XGBoost & Tree boosting & Max depth 7 & 50 estimators  & MAE  & 0.1619 \\
+XGBoost & Tree boosting & Max depth 7 & 50 estimators  & MAE  & \textbf{0.1619} \\
 XGBoost & Tree boosting & Max depth 7 & 100 estimators & MAE  & 0.2023 \\
 XGBoost & Tree boosting & Max depth 7 & 150 estimators & MAE  & 0.2272 \\
+
+% ============================================================
+% XGBoost - MSE
+% ============================================================
 
 XGBoost & Tree boosting & Max depth 3 & 50 estimators  & MSE  & 0.0384 \\
 XGBoost & Tree boosting & Max depth 3 & 100 estimators & MSE  & 0.0478 \\
 XGBoost & Tree boosting & Max depth 3 & 150 estimators & MSE  & 0.0587 \\
-XGBoost & Tree boosting & Max depth 5 & 50 estimators  & MSE  & 0.0377 \\
+XGBoost & Tree boosting & Max depth 5 & 50 estimators  & MSE  & \textbf{0.0377} \\
 XGBoost & Tree boosting & Max depth 5 & 100 estimators & MSE  & 0.0541 \\
 XGBoost & Tree boosting & Max depth 5 & 150 estimators & MSE  & 0.0713 \\
 XGBoost & Tree boosting & Max depth 7 & 50 estimators  & MSE  & 0.0378 \\
 XGBoost & Tree boosting & Max depth 7 & 100 estimators & MSE  & 0.0543 \\
 XGBoost & Tree boosting & Max depth 7 & 150 estimators & MSE  & 0.0713 \\
 
+% ============================================================
+% XGBoost - RMSE
+% ============================================================
+
 XGBoost & Tree boosting & Max depth 3 & 50 estimators  & RMSE & 0.1959 \\
 XGBoost & Tree boosting & Max depth 3 & 100 estimators & RMSE & 0.2186 \\
 XGBoost & Tree boosting & Max depth 3 & 150 estimators & RMSE & 0.2423 \\
-XGBoost & Tree boosting & Max depth 5 & 50 estimators  & RMSE & 0.1943 \\
+XGBoost & Tree boosting & Max depth 5 & 50 estimators  & RMSE & \textbf{0.1943} \\
 XGBoost & Tree boosting & Max depth 5 & 100 estimators & RMSE & 0.2326 \\
 XGBoost & Tree boosting & Max depth 5 & 150 estimators & RMSE & 0.2671 \\
 XGBoost & Tree boosting & Max depth 7 & 50 estimators  & RMSE & 0.1944 \\
