@@ -1,0 +1,161 @@
+\section{Data and Methodology}
+
+This section explains the empirical design used to evaluate machine learning and deep learning models for stock price prediction and Shariah-compliant portfolio optimisation. The methodology follows a two-stage structure. In the first stage, six predictive models are trained and evaluated using historical stock market data from the BIST Participation All Index (BIST XKTUM). In the second stage, the predicted returns are incorporated into a sparse mean-variance optimisation framework to construct Shariah-compliant portfolios. This structure enables the study to evaluate the models not only in terms of forecasting accuracy, but also in terms of their usefulness for portfolio construction. This is consistent with the portfolio optimisation tradition initiated by \citet{markowitz1952portfolio}, where asset allocation decisions are evaluated through the joint consideration of expected return and risk.
+
+\subsection{Research design}
+
+The research design is based on a sequential empirical framework. First, historical stock market data are collected, cleaned and transformed into a model-ready format. Second, feature engineering and dimensionality reduction are applied to improve the informational quality of the dataset and reduce unnecessary complexity. Third, the dataset is divided into training and testing subsets using an 80/20 split. Fourth, LSTM, Bi-LSTM, GRU, XGBoost, Random Forest and SVM models are trained and evaluated using prediction error metrics. Finally, the predicted returns from the sequence-based models are used in a mean-variance portfolio optimisation process supported by L1 regularisation.
+
+This design is appropriate because the study has two connected objectives. The first objective is to identify which machine learning or deep learning model provides the most accurate stock price predictions. The second objective is to assess whether these predictions can be translated into improved portfolio outcomes within a Shariah-compliant investment universe. Therefore, the methodology links forecasting performance with investment performance, responding to the view that predictive accuracy alone is not sufficient for evaluating financial models in practical portfolio management \citep{bodie2014investments}.
+
+\subsection{Data source and sample selection}
+
+The empirical dataset consists of daily stock market observations for companies listed in the BIST Participation All Index (BIST XKTUM). The BIST XKTUM is selected because it represents a Shariah-compliant equity universe in the Turkish capital market. This makes it suitable for examining portfolio optimisation in an Islamic finance context, as the investment universe is already restricted according to Shariah screening criteria. Portfolio construction therefore begins from a filtered investment universe rather than from the full conventional market.
+
+The initial BIST XKTUM universe contained 203 stocks during the study period. However, some recently listed stocks did not have complete historical observations from the beginning of the sample period. To maintain time-series consistency, stocks with insufficient historical data were excluded. The final dataset used in the analysis contains 163 stocks observed between 2007 Q1 and 2022 Q4. This exclusion is necessary because time-series models require sufficient historical depth to identify temporal patterns and avoid bias caused by unequal data histories \citep{lo2017adaptive}.
+
+The stock market data were obtained from Yahoo Finance. The downloaded variables include open, high, low, close and adjusted closing prices, together with trading volume. Yahoo Finance was selected because it provides broad historical coverage and is widely used in empirical financial analysis. The data retrieval process was automated using the \texttt{quantmod} package in R, particularly the \texttt{getSymbols} function, which supports the systematic extraction of financial time-series data for quantitative modelling.
+
+The initial data collection produced 468,261 observations. This large dataset provides sufficient temporal depth for training machine learning and deep learning models and allows the analysis to capture different stock-specific and market-wide patterns. A broad stock universe is also important for portfolio optimisation because it improves the estimation of returns, volatilities and correlations among assets. As \citet{heaton2017deep} notes, large financial datasets create opportunities for advanced machine learning methods to detect patterns that may be difficult to identify using smaller samples or purely linear models.
+
+\subsection{Data cleaning and preprocessing}
+
+Data preprocessing is an essential stage in financial time-series modelling because raw market data often contain missing observations, non-trading days, symbol inconsistencies or abnormal values. In this study, the dataset was first examined to identify missing values across open, high, low, close, adjusted close and volume variables. Missing values may arise due to market closures, non-trading days, data source limitations or newly listed stocks. If they are not handled carefully, missing observations may distort predictive modelling and statistical inference \citep{schafer2002missing}.
+
+To preserve the time-series integrity of the dataset, observations with incomplete values were removed where necessary. This approach was preferred because the models depend on the sequential structure of the data, and extensive imputation may distort temporal patterns. After cleaning, the dataset contained 467,682 complete records. This cleaned dataset forms the basis for feature engineering, dimensionality reduction and model training.
+
+The preprocessing stage also included consistency checks on stock symbols and date alignment across the selected equities. This ensured that the final dataset had a comparable temporal structure across the stock universe. Maintaining this consistency is particularly important for portfolio optimisation, where return, variance and covariance estimates depend on aligned observations across assets. Careful data cleaning also reduces the risk that errors in the raw dataset will propagate into the modelling stage \citep{azuaje2006mining}.
+
+\subsection{Feature engineering}
+
+Feature engineering was applied to extract additional information from the raw price data and improve the predictive capacity of the models. In financial markets, raw closing prices alone may not sufficiently capture the risk and return dynamics that influence stock behaviour. Therefore, several derived features were calculated from the historical price series.
+
+The first engineered variable is daily return, calculated from the percentage change in closing prices. Daily returns provide information about short-term price movements and are central to both prediction and portfolio analysis. The second variable is the 20-day return, which captures medium-term price movement over approximately one trading month. The third variable is 20-day rolling volatility, calculated as the rolling standard deviation of daily returns. This variable provides a measure of short-term risk and market instability.
+
+The study also considers technical indicators as potential explanatory features. These include moving averages, relative strength index and Bollinger Bands. Moving averages help smooth price fluctuations and identify trend direction. The relative strength index captures momentum and overbought or oversold conditions. Bollinger Bands provide information about volatility relative to a moving average. Together, these engineered variables allow the models to learn from both return-based and volatility-based information. The use of engineered financial indicators is consistent with the broader machine learning literature, where model performance depends heavily on the quality and relevance of input features \citep{witten2016data}.
+
+\subsection{Normalisation and dimensionality reduction}
+
+The dataset was normalised using MinMax scaling. Closing prices and engineered features were scaled into the interval $[0,1]$. This transformation preserves the relative structure of the data while ensuring that all variables contribute on a comparable scale. Normalisation also helps reduce the influence of extreme values and supports stable model training.
+
+After normalisation, Principal Component Analysis (PCA) was applied for dimensionality reduction. The motivation for using PCA is that the dataset contains a large number of stocks and features, which increases dimensionality and computational complexity. PCA transforms correlated variables into a smaller set of uncorrelated principal components that explain the largest share of variance in the data. The method originates from \citet{pearson1901lines} and remains widely used for reducing dimensionality in high-dimensional datasets \citep{jolliffe2016principal}.
+
+Before PCA, the return series were standardised so that each variable had a comparable scale. The covariance matrix of the standardised returns was then computed, and eigen decomposition was used to identify the principal components. The number of retained components was determined by considering the explained variance ratio. This procedure reduces the dimensionality of the dataset while preserving the main information structure required for prediction and optimisation.
+
+\subsection{Supervised learning structure}
+
+To prepare the financial time series for supervised learning, the dataset was transformed into input-output pairs. A lookback period of 252 trading days was used. This corresponds approximately to one trading year and allows the models to learn from annual market dynamics. The forecast horizon was set to 22 trading days, corresponding approximately to one trading month. This means that each model uses one year of historical information to predict the following monthly horizon.
+
+Let $X_t$ denote the input window containing historical observations over the previous 252 trading days, and let $Y_t$ denote the target window over the following 22 trading days. The supervised learning structure can be written as:
+
+\begin{equation}
+X_t = \{x_{t-251}, x_{t-250}, \ldots, x_t\},
+\end{equation}
+
+\begin{equation}
+Y_t = \{x_{t+1}, x_{t+2}, \ldots, x_{t+22}\}.
+\end{equation}
+
+The windowing procedure was repeated across the dataset to create multiple training samples. This structure is particularly suitable for LSTM, Bi-LSTM and GRU models because these models are designed to learn temporal dependencies from sequential data. For non-sequential models such as XGBoost, Random Forest and SVM, the input arrays were flattened into a two-dimensional structure so that each observation could be represented as a feature vector.
+
+\subsection{Prediction models}
+
+Six models were used for stock price prediction: LSTM, Bi-LSTM, GRU, XGBoost, Random Forest and SVM. These models were selected to compare sequence-based deep learning methods with non-sequential machine learning methods.
+
+LSTM, Bi-LSTM and GRU are recurrent neural network architectures designed for sequential data. LSTM models are suitable for financial time series because they can retain information over longer time horizons through gating mechanisms. The LSTM architecture was introduced by \citet{hochreiter1997long} to address the vanishing gradient problem in recurrent neural networks. Bi-LSTM extends this structure by processing the sequence in both forward and backward directions, potentially capturing richer temporal relationships \citep{schuster1997bidirectional}. GRU uses a simpler gating structure than LSTM, which may reduce computational cost while retaining the ability to model sequential dependencies \citep{cho2014learning}.
+
+XGBoost, Random Forest and SVM were used as non-sequential models. XGBoost is a gradient boosting algorithm that builds an ensemble of decision trees and is effective in modelling non-linear relationships \citep{chen2016xgboost}. Random Forest is an ensemble learning method based on multiple decision trees and is robust to overfitting in many prediction tasks \citep{breiman2001random}. SVM is suitable for high-dimensional prediction problems and can model non-linear relationships when used with kernel functions \citep{cortes1995support}.
+
+\subsection{Hyperparameter tuning and model training}
+
+Hyperparameter tuning was applied to improve model performance and ensure a fair comparison across model classes. For the LSTM models, different batch sizes and neuron configurations were tested. The single-layer LSTM model was evaluated using batch sizes of 8, 16, 32, 64, 128 and 256, and neuron sizes of 4, 8, 16, 32 and 64. Two-layer LSTM configurations were also examined using alternative neuron sizes and dropout rates.
+
+The Bi-LSTM and GRU models were configured using 256 neurons, 50 training epochs, early stopping and dropout regularisation. Early stopping was used to prevent overfitting by stopping model training when validation performance no longer improved. Dropout regularisation was also applied with a dropout rate of 0.4 to reduce reliance on individual neurons and improve generalisation. Dropout is widely used as a regularisation method in neural networks because it discourages co-adaptation among neurons and improves out-of-sample generalisation \citep{srivastava2014dropout}.
+
+For XGBoost, the number of estimators and maximum tree depth were tuned. The tested values included 50, 100 and 150 estimators, and maximum depths of 3, 5 and 7. For Random Forest, the hyperparameter space included the number of trees, maximum depth, minimum samples split and minimum samples per leaf. For SVM, the hyperparameters included the regularisation parameter $C$, the RBF kernel coefficient $\gamma$ and the epsilon parameter in the support vector regression loss function.
+
+Due to the size of the dataset and the number of model configurations, NVIDIA V100 GPUs were used to support computationally intensive training and hyperparameter search. GPU acceleration was used to reduce training time and enable a broader search across model configurations. It is important to note that GPU acceleration is treated as a computational support mechanism rather than a direct cause of predictive accuracy.
+
+\subsection{Prediction performance evaluation}
+
+The predictive performance of the models was evaluated using three error metrics: mean absolute error (MAE), mean squared error (MSE) and root mean squared error (RMSE). MAE measures the average absolute difference between actual and predicted values. MSE measures the average squared prediction error and gives greater penalty to larger errors. RMSE is the square root of MSE and expresses prediction error in the same scale as the predicted variable.
+
+The metrics are defined as follows:
+
+\begin{equation}
+MAE = \frac{1}{n}\sum_{i=1}^{n}|y_i-\hat{y}_i|,
+\end{equation}
+
+\begin{equation}
+MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2,
+\end{equation}
+
+\begin{equation}
+RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2},
+\end{equation}
+
+\noindent where $y_i$ denotes the actual value, $\hat{y}_i$ denotes the predicted value and $n$ denotes the number of observations. The model with the lowest error metrics is considered the strongest stock price prediction model. However, prediction accuracy alone is not sufficient to determine investment usefulness. Therefore, the predicted outputs are also evaluated through portfolio optimisation.
+
+\subsection{Portfolio optimisation framework}
+
+The second stage of the methodology applies the predicted returns to portfolio optimisation. This stage focuses on the LSTM, Bi-LSTM and GRU models because they are specifically designed for time-series prediction and can generate sequential return forecasts. The actual and predicted prices were processed consistently using a custom \texttt{load\_and\_process} function. Logarithmic returns were then calculated from the actual and predicted price series.
+
+Logarithmic returns were preferred because they are time-additive and often more suitable for multi-period financial analysis. The logarithmic return is defined as:
+
+\begin{equation}
+r_t = \ln\left(\frac{P_t}{P_{t-1}}\right),
+\end{equation}
+
+\noindent where $P_t$ is the asset price at time $t$ and $P_{t-1}$ is the asset price in the previous period.
+
+The portfolio optimisation model is based on the mean-variance framework \citep{markowitz1952portfolio}. The objective is to maximise expected return while controlling portfolio risk. The basic mean-variance objective can be expressed as:
+
+\begin{equation}
+\max_{w} \left(w^{T}\mu - \lambda w^{T}\Sigma w \right),
+\end{equation}
+
+\noindent where $w$ is the vector of portfolio weights, $\mu$ is the vector of expected returns, $\Sigma$ is the covariance matrix of returns and $\lambda$ is the risk-aversion parameter.
+
+To reduce portfolio complexity, L1 regularisation is incorporated into the optimisation objective. L1 regularisation is closely associated with the LASSO method introduced by \citet{tibshirani1996regression}, which encourages sparsity by penalising the absolute size of coefficients. In this study, the regularised portfolio objective is written as:
+
+\begin{equation}
+\max_{w} \left(w^{T}\mu - \lambda w^{T}\Sigma w - \alpha \|w\|_1 \right),
+\end{equation}
+
+\noindent where $\alpha$ controls the strength of the L1 penalty and $\|w\|_1$ represents the sum of absolute portfolio weights. The purpose of this penalty is to support sparse asset selection and reduce unnecessary exposure to a large number of stocks.
+
+The optimisation is subject to the following constraints:
+
+\begin{equation}
+\sum_{i=1}^{N} w_i = 1,
+\end{equation}
+
+\begin{equation}
+0 \leq w_i \leq 1, \quad i = 1,2,\ldots,N.
+\end{equation}
+
+These constraints imply a fully invested, long-only portfolio. This is appropriate for the Shariah-compliant context of the study because short selling may raise additional Shariah concerns. The optimisation problem was solved using Sequential Least Squares Programming (SLSQP) through SciPy's optimisation module.
+
+A methodological caution is necessary regarding L1 regularisation. In a strictly long-only portfolio where all weights are non-negative and sum to one, the L1 norm can become constant. Therefore, the sparsification effect of L1 regularisation depends on the exact implementation and constraint structure. In this study, L1 regularisation is used as a practical mechanism to support sparse allocation and reduce portfolio complexity. Future research may compare this approach with alternative methods such as Elastic Net, Hierarchical Risk Parity and cardinality-constrained optimisation.
+
+\subsection{Portfolio performance evaluation}
+
+Portfolio performance was evaluated using ending equity value, annualised volatility and annualised Sharpe ratio. Ending equity measures cumulative portfolio growth over the evaluation period. Volatility measures the dispersion of portfolio returns and is used as a risk indicator. The Sharpe ratio measures risk-adjusted return and is one of the most widely used measures for evaluating portfolio performance \citep{sharpe1966mutual}. It is calculated as:
+
+\begin{equation}
+Sharpe\ Ratio = \frac{R_p - R_f}{\sigma_p},
+\end{equation}
+
+\noindent where $R_p$ is the portfolio return, $R_f$ is the risk-free rate and $\sigma_p$ is the standard deviation of portfolio returns. Where the risk-free rate is assumed to be zero or omitted for model comparison, the Sharpe ratio is interpreted as return per unit of volatility.
+
+The portfolio value is updated using compounded logarithmic returns:
+
+\begin{equation}
+V_t = V_{t-1} \times e^{r_t},
+\end{equation}
+
+\noindent where $V_t$ is the portfolio value at time $t$ and $r_t$ is the portfolio logarithmic return. The initial portfolio value is set to 100 for comparative purposes. This allows the LSTM, Bi-LSTM and GRU portfolio strategies to be evaluated on a common basis.
+
+\subsection{Methodological summary}
+
+In summary, the methodology combines prediction and optimisation within a single empirical framework. The prediction stage compares six machine learning and deep learning models using standard error metrics. The optimisation stage applies the predicted returns to a Shariah-compliant mean-variance framework with sparse allocation. This design allows the study to evaluate whether models that perform well in prediction also produce superior portfolio outcomes. It also reflects the practical requirements of Islamic investment management, where asset allocation must consider both financial efficiency and Shariah-compliant investment restrictions.
