@@ -1,0 +1,103 @@
+\section{Empirical Results}
+
+This section presents the empirical results of the machine learning and deep learning models used for stock price prediction and portfolio optimisation. The results are reported in three stages. First, the main hyperparameter-tuning results are presented for the LSTM and XGBoost models. Second, the best-performing configuration of each model is compared using prediction error metrics. Third, the sequence-based models are evaluated in the portfolio optimisation stage.
+
+\subsection{Hyperparameter tuning results}
+
+Table~\ref{tab:tuning-results} reports the main hyperparameter-tuning results for the LSTM and XGBoost models. For the LSTM model, different batch-size and neuron configurations were tested. For the XGBoost model, different maximum-depth and estimator configurations were evaluated. The results are reported using MAE, MSE and RMSE.
+
+\begin{landscape}
+\begin{longtable}{llcccc}
+\caption{Hyperparameter tuning results for LSTM and XGBoost models}
+\label{tab:tuning-results} \\
+\toprule
+\textbf{Model} & \textbf{Configuration} & \textbf{Parameter 1} & \textbf{Parameter 2} & \textbf{Metric} & \textbf{Value} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Model} & \textbf{Configuration} & \textbf{Parameter 1} & \textbf{Parameter 2} & \textbf{Metric} & \textbf{Value} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{6}{r}{\textit{Continued on next page}} \\
+\midrule
+\endfoot
+
+\bottomrule
+\multicolumn{6}{l}{\footnotesize Source: Author's own calculations.} \\
+\endlastfoot
+
+LSTM & Single-layer & Batch size 8   & 4 neurons  & MAE  & 0.2058 \\
+LSTM & Single-layer & Batch size 8   & 8 neurons  & MAE  & 0.2122 \\
+LSTM & Single-layer & Batch size 8   & 16 neurons & MAE  & 0.2057 \\
+LSTM & Single-layer & Batch size 8   & 32 neurons & MAE  & 0.2090 \\
+LSTM & Single-layer & Batch size 8   & 64 neurons & MAE  & 0.2123 \\
+LSTM & Single-layer & Batch size 16  & 4 neurons  & MAE  & 0.2151 \\
+LSTM & Single-layer & Batch size 16  & 8 neurons  & MAE  & 0.2097 \\
+LSTM & Single-layer & Batch size 16  & 16 neurons & MAE  & 0.2071 \\
+LSTM & Single-layer & Batch size 16  & 32 neurons & MAE  & 0.2143 \\
+LSTM & Single-layer & Batch size 16  & 64 neurons & MAE  & 0.2074 \\
+LSTM & Single-layer & Batch size 32  & 4 neurons  & MAE  & 0.2076 \\
+LSTM & Single-layer & Batch size 32  & 8 neurons  & MAE  & 0.2078 \\
+LSTM & Single-layer & Batch size 32  & 16 neurons & MAE  & 0.2055 \\
+LSTM & Single-layer & Batch size 32  & 32 neurons & MAE  & 0.2067 \\
+LSTM & Single-layer & Batch size 32  & 64 neurons & MAE  & 0.2109 \\
+LSTM & Single-layer & Batch size 64  & 4 neurons  & MAE  & 0.2091 \\
+LSTM & Single-layer & Batch size 64  & 8 neurons  & MAE  & 0.2083 \\
+LSTM & Single-layer & Batch size 64  & 16 neurons & MAE  & 0.2075 \\
+LSTM & Single-layer & Batch size 64  & 32 neurons & MAE  & 0.2117 \\
+LSTM & Single-layer & Batch size 64  & 64 neurons & MAE  & 0.2068 \\
+LSTM & Single-layer & Batch size 128 & 4 neurons  & MAE  & 0.1995 \\
+LSTM & Single-layer & Batch size 128 & 8 neurons  & MAE  & 0.2086 \\
+LSTM & Single-layer & Batch size 128 & 16 neurons & MAE  & 0.2068 \\
+LSTM & Single-layer & Batch size 128 & 32 neurons & MAE  & 0.2110 \\
+LSTM & Single-layer & Batch size 128 & 64 neurons & MAE  & 0.2059 \\
+LSTM & Single-layer & Batch size 256 & 4 neurons  & MAE  & 0.1989 \\
+LSTM & Single-layer & Batch size 256 & 8 neurons  & MAE  & 0.2041 \\
+LSTM & Single-layer & Batch size 256 & 16 neurons & MAE  & 0.2075 \\
+LSTM & Single-layer & Batch size 256 & 32 neurons & MAE  & 0.2062 \\
+LSTM & Single-layer & Batch size 256 & 64 neurons & MAE  & 0.2098 \\
+
+LSTM & Two-layer & 256 neurons & Dropout 0.1 & MAE & 0.2195 \\
+LSTM & Two-layer & 512 neurons & Dropout 0.1 & MAE & 0.2198 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.2 & MAE & 0.2191 \\
+LSTM & Two-layer & 512 neurons & Dropout 0.2 & MAE & 0.2224 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.3 & MAE & 0.2191 \\
+LSTM & Two-layer & 512 neurons & Dropout 0.3 & MAE & 0.2211 \\
+LSTM & Two-layer & 256 neurons & Dropout 0.4 & MAE & 0.2228 \\
+LSTM & Two-layer & 512 neurons & Dropout 0.4 & MAE & 0.2419 \\
+
+XGBoost & Tree boosting & Max depth 3 & 50 estimators  & MAE  & 0.1629 \\
+XGBoost & Tree boosting & Max depth 3 & 100 estimators & MAE  & 0.1827 \\
+XGBoost & Tree boosting & Max depth 3 & 150 estimators & MAE  & 0.1938 \\
+XGBoost & Tree boosting & Max depth 5 & 50 estimators  & MAE  & 0.1619 \\
+XGBoost & Tree boosting & Max depth 5 & 100 estimators & MAE  & 0.2027 \\
+XGBoost & Tree boosting & Max depth 5 & 150 estimators & MAE  & 0.2277 \\
+XGBoost & Tree boosting & Max depth 7 & 50 estimators  & MAE  & 0.1619 \\
+XGBoost & Tree boosting & Max depth 7 & 100 estimators & MAE  & 0.2023 \\
+XGBoost & Tree boosting & Max depth 7 & 150 estimators & MAE  & 0.2272 \\
+
+XGBoost & Tree boosting & Max depth 3 & 50 estimators  & MSE  & 0.0384 \\
+XGBoost & Tree boosting & Max depth 3 & 100 estimators & MSE  & 0.0478 \\
+XGBoost & Tree boosting & Max depth 3 & 150 estimators & MSE  & 0.0587 \\
+XGBoost & Tree boosting & Max depth 5 & 50 estimators  & MSE  & 0.0377 \\
+XGBoost & Tree boosting & Max depth 5 & 100 estimators & MSE  & 0.0541 \\
+XGBoost & Tree boosting & Max depth 5 & 150 estimators & MSE  & 0.0713 \\
+XGBoost & Tree boosting & Max depth 7 & 50 estimators  & MSE  & 0.0378 \\
+XGBoost & Tree boosting & Max depth 7 & 100 estimators & MSE  & 0.0543 \\
+XGBoost & Tree boosting & Max depth 7 & 150 estimators & MSE  & 0.0713 \\
+
+XGBoost & Tree boosting & Max depth 3 & 50 estimators  & RMSE & 0.1959 \\
+XGBoost & Tree boosting & Max depth 3 & 100 estimators & RMSE & 0.2186 \\
+XGBoost & Tree boosting & Max depth 3 & 150 estimators & RMSE & 0.2423 \\
+XGBoost & Tree boosting & Max depth 5 & 50 estimators  & RMSE & 0.1943 \\
+XGBoost & Tree boosting & Max depth 5 & 100 estimators & RMSE & 0.2326 \\
+XGBoost & Tree boosting & Max depth 5 & 150 estimators & RMSE & 0.2671 \\
+XGBoost & Tree boosting & Max depth 7 & 50 estimators  & RMSE & 0.1944 \\
+XGBoost & Tree boosting & Max depth 7 & 100 estimators & RMSE & 0.2330 \\
+XGBoost & Tree boosting & Max depth 7 & 150 estimators & RMSE & 0.2670 \\
+
+\end{longtable}
+\end{landscape}
