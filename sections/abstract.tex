@@ -1,0 +1,19 @@
+\begin{abstract}
+
+    \noindent\textbf{Purpose} \\
+    This paper evaluates the performance of hyperparameter-optimised machine learning and deep learning models for stock price prediction and Shariah-compliant portfolio optimisation within the BIST Participation All Index (BIST XKTUM).
+    
+    \noindent\textbf{Design/methodology/approach} \\
+    The study analyses daily closing prices of 163 BIST XKTUM stocks from 2007 Q1 to 2022 Q4. A two-stage methodology is applied. First, LSTM, Bi-LSTM, GRU, XGBoost, Random Forest and SVM models are trained and tuned for stock price prediction. Second, predicted returns are integrated into a mean-variance optimisation framework. L1 regularisation is used to support sparse asset selection. NVIDIA V100 GPUs are used to enable efficient hyperparameter search and model training.
+    
+    \noindent\textbf{Findings} \\
+    XGBoost achieves the strongest prediction performance, with an MAE of 0.1619 and RMSE of 0.1943. In the portfolio optimisation stage, LSTM generates the highest equity value, while Bi-LSTM provides the most favourable risk-return balance, achieving a Sharpe ratio of 0.0719. GRU shows resilience under volatile market conditions despite higher prediction errors.
+    
+    \noindent\textbf{Originality} \\
+    The paper contributes by combining GPU-supported machine learning architectures with sparse portfolio optimisation for large-scale Shariah-compliant equity portfolios.
+    
+    \noindent\textbf{Keywords:} machine learning; deep learning; portfolio optimisation; hyperparameter tuning; L1 regularisation; BIST XKTUM; Islamic finance.
+    
+    \noindent\textbf{Article classification:} Research paper.
+    
+    \end{abstract}
