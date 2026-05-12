@@ -17,14 +17,15 @@
 \renewcommand{\headrulewidth}{0pt}     
 \renewcommand{\footrulewidth}{0pt}
 
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother
+
 \title{JIABR}
 \author{Gokmen Kilic}
 \date{\today}
 
 \begin{document}
-\makeatletter
-\let\ps@plain\ps@fancy
-\makeatother
 
 \input{sections/abstract}
 \input{sections/Introduction}
