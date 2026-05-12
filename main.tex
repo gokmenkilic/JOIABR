@@ -1,24 +1,16 @@
-\documentclass{article}
 \documentclass[12pt]{article}
 
-% ------------------------------------------------------------
-% Encoding and page layout
-% ------------------------------------------------------------
+
 \usepackage[utf8]{inputenc}
 \usepackage[margin=1in]{geometry}
 \usepackage{setspace}
 \doublespacing
 
-% ------------------------------------------------------------
-% References and links
-% ------------------------------------------------------------
+
 \usepackage{natbib}
 \usepackage{url}
 \usepackage{hyperref}
 
-% ------------------------------------------------------------
-% Tables
-% ------------------------------------------------------------
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{multirow}
@@ -30,20 +22,20 @@
 
 \definecolor{blond}{RGB}{250, 240, 190}
 
-% ------------------------------------------------------------
-% Figures and equations
-% ------------------------------------------------------------
 \usepackage{graphicx}
 \usepackage{amsmath}
 
-% ------------------------------------------------------------
-% Page numbers
-% ------------------------------------------------------------
+
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother
 
 \title{JIABR}
 \author{Gokmen Kilic}
@@ -51,15 +43,15 @@
 
 \begin{document}
 
+\maketitle
+
 \input{sections/abstract}
 \input{sections/Introduction}
 \input{sections/literature_review}
 \input{sections/data_and_methodology}
 \input{sections/emprical_results}
 
-
-
-\bibliographystyle{apalike} 
+\bibliographystyle{apalike}
 \bibliography{references}
 
 \end{document}
