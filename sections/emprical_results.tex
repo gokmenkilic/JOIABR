@@ -2,9 +2,11 @@
 
 This section presents the empirical results of the machine learning and deep learning models used for stock price prediction and portfolio optimisation. The results are reported in three stages. First, the main hyperparameter-tuning results are presented for the LSTM and XGBoost models. Second, the best-performing configuration of each model is compared using prediction error metrics. Third, the sequence-based models are evaluated in the portfolio optimisation stage.
 
+Although detailed hyperparameter-tuning tables increase article length, they are included to improve methodological transparency and to show how the final model configurations were selected. The summary tables that follow are used for direct model comparison and portfolio-level interpretation.
+
 \subsection{Hyperparameter tuning results}
 
-Bold values in Table~\ref{tab:tuning-results} indicate the best-performing configuration within each model and error metric group. Since MAE, MSE and RMSE are error metrics, lower values indicate better predictive performance.
+Bold rows in Table~\ref{tab:tuning-results} indicate the best-performing configuration within each model and error metric group. Since MAE, MSE and RMSE are error metrics, lower values indicate better predictive performance.
 
 \begin{landscape}
 \begin{longtable}{llcccc}
@@ -26,13 +28,10 @@ Bold values in Table~\ref{tab:tuning-results} indicate the best-performing confi
 \endfoot
 
 \bottomrule
-\multicolumn{6}{l}{\footnotesize Source: Author's own calculations. Bold values indicate the best-performing configuration within each model--metric group.} \\
+\multicolumn{6}{l}{\footnotesize Source: Author's own calculations. Bold rows indicate the best-performing configuration within each model--metric group.} \\
 \endlastfoot
 
-% ============================================================
 % Single-layer LSTM - MAE
-% ============================================================
-
 LSTM & Single-layer & Batch size 8   & 4 neurons  & MAE  & 0.2058 \\
 LSTM & Single-layer & Batch size 8   & 8 neurons  & MAE  & 0.2122 \\
 LSTM & Single-layer & Batch size 8   & 16 neurons & MAE  & 0.2057 \\
@@ -58,16 +57,13 @@ LSTM & Single-layer & Batch size 128 & 8 neurons  & MAE  & 0.2086 \\
 LSTM & Single-layer & Batch size 128 & 16 neurons & MAE  & 0.2068 \\
 LSTM & Single-layer & Batch size 128 & 32 neurons & MAE  & 0.2110 \\
 LSTM & Single-layer & Batch size 128 & 64 neurons & MAE  & 0.2059 \\
-\textbf{LSTM} & \textbf{Single-layer} & \textbf{Batch size 256} & \textbf{4 neurons}  & \textbf{MAE}  & \textbf{0.1989} \\
+\textbf{LSTM} & \textbf{Single-layer} & \textbf{Batch size 256} & \textbf{4 neurons} & \textbf{MAE} & \textbf{0.1989} \\
 LSTM & Single-layer & Batch size 256 & 8 neurons  & MAE  & 0.2041 \\
 LSTM & Single-layer & Batch size 256 & 16 neurons & MAE  & 0.2075 \\
 LSTM & Single-layer & Batch size 256 & 32 neurons & MAE  & 0.2062 \\
 LSTM & Single-layer & Batch size 256 & 64 neurons & MAE  & 0.2098 \\
 
-% ============================================================
 % Single-layer LSTM - MSE
-% ============================================================
-
 LSTM & Single-layer & Batch size 8   & 4 neurons  & MSE  & 0.0688 \\
 LSTM & Single-layer & Batch size 8   & 8 neurons  & MSE  & 0.0740 \\
 LSTM & Single-layer & Batch size 8   & 16 neurons & MSE  & 0.0689 \\
@@ -88,7 +84,7 @@ LSTM & Single-layer & Batch size 64  & 8 neurons  & MSE  & 0.0703 \\
 LSTM & Single-layer & Batch size 64  & 16 neurons & MSE  & 0.0714 \\
 LSTM & Single-layer & Batch size 64  & 32 neurons & MSE  & 0.0736 \\
 LSTM & Single-layer & Batch size 64  & 64 neurons & MSE  & 0.0706 \\
-\textbf{LSTM} & \textbf{Single-layer} & \textbf{Batch size 128} & \textbf{4 neurons}  & \textbf{MSE}  & \textbf{0.0639} \\
+\textbf{LSTM} & \textbf{Single-layer} & \textbf{Batch size 128} & \textbf{4 neurons} & \textbf{MSE} & \textbf{0.0639} \\
 LSTM & Single-layer & Batch size 128 & 8 neurons  & MSE  & 0.0673 \\
 LSTM & Single-layer & Batch size 128 & 16 neurons & MSE  & 0.0707 \\
 LSTM & Single-layer & Batch size 128 & 32 neurons & MSE  & 0.0739 \\
@@ -99,10 +95,7 @@ LSTM & Single-layer & Batch size 256 & 16 neurons & MSE  & 0.0709 \\
 LSTM & Single-layer & Batch size 256 & 32 neurons & MSE  & 0.0699 \\
 LSTM & Single-layer & Batch size 256 & 64 neurons & MSE  & 0.0727 \\
 
-% ============================================================
 % Single-layer LSTM - RMSE
-% ============================================================
-
 LSTM & Single-layer & Batch size 8   & 4 neurons  & RMSE & 0.2624 \\
 LSTM & Single-layer & Batch size 8   & 8 neurons  & RMSE & 0.2721 \\
 LSTM & Single-layer & Batch size 8   & 16 neurons & RMSE & 0.2625 \\
@@ -123,7 +116,7 @@ LSTM & Single-layer & Batch size 64  & 8 neurons  & RMSE & 0.2652 \\
 LSTM & Single-layer & Batch size 64  & 16 neurons & RMSE & 0.2673 \\
 LSTM & Single-layer & Batch size 64  & 32 neurons & RMSE & 0.2713 \\
 LSTM & Single-layer & Batch size 64  & 64 neurons & RMSE & 0.2657 \\
-\textbf{LSTM} & \textbf{Single-layer} & \textbf{Batch size 128} & \textbf{4 neurons}  & \textbf{RMSE} & \textbf{0.2527} \\
+\textbf{LSTM} & \textbf{Single-layer} & \textbf{Batch size 128} & \textbf{4 neurons} & \textbf{RMSE} & \textbf{0.2527} \\
 LSTM & Single-layer & Batch size 128 & 8 neurons  & RMSE & 0.2595 \\
 LSTM & Single-layer & Batch size 128 & 16 neurons & RMSE & 0.2659 \\
 LSTM & Single-layer & Batch size 128 & 32 neurons & RMSE & 0.2719 \\
@@ -134,10 +127,7 @@ LSTM & Single-layer & Batch size 256 & 16 neurons & RMSE & 0.2662 \\
 LSTM & Single-layer & Batch size 256 & 32 neurons & RMSE & 0.2644 \\
 LSTM & Single-layer & Batch size 256 & 64 neurons & RMSE & 0.2697 \\
 
-% ============================================================
-% Two-layer LSTM - MAE
-% ============================================================
-
+% Two-layer LSTM
 LSTM & Two-layer & 256 neurons & Dropout 0.1 & MAE & 0.2195 \\
 LSTM & Two-layer & 512 neurons & Dropout 0.1 & MAE & 0.2198 \\
 \textbf{LSTM} & \textbf{Two-layer} & \textbf{256 neurons} & \textbf{Dropout 0.2} & \textbf{MAE} & \textbf{0.2191} \\
@@ -146,10 +136,6 @@ LSTM & Two-layer & 512 neurons & Dropout 0.2 & MAE & 0.2224 \\
 LSTM & Two-layer & 512 neurons & Dropout 0.3 & MAE & 0.2211 \\
 LSTM & Two-layer & 256 neurons & Dropout 0.4 & MAE & 0.2228 \\
 LSTM & Two-layer & 512 neurons & Dropout 0.4 & MAE & 0.2419 \\
-
-% ============================================================
-% Two-layer LSTM - MSE
-% ============================================================
 
 LSTM & Two-layer & 256 neurons & Dropout 0.1 & MSE & 0.0794 \\
 LSTM & Two-layer & 512 neurons & Dropout 0.1 & MSE & 0.0796 \\
@@ -160,10 +146,6 @@ LSTM & Two-layer & 512 neurons & Dropout 0.3 & MSE & 0.0799 \\
 LSTM & Two-layer & 256 neurons & Dropout 0.4 & MSE & 0.0794 \\
 LSTM & Two-layer & 512 neurons & Dropout 0.4 & MSE & 0.0888 \\
 
-% ============================================================
-% Two-layer LSTM - RMSE
-% ============================================================
-
 LSTM & Two-layer & 256 neurons & Dropout 0.1 & RMSE & 0.2818 \\
 LSTM & Two-layer & 512 neurons & Dropout 0.1 & RMSE & 0.2821 \\
 \textbf{LSTM} & \textbf{Two-layer} & \textbf{256 neurons} & \textbf{Dropout 0.2} & \textbf{RMSE} & \textbf{0.2797} \\
@@ -173,42 +155,31 @@ LSTM & Two-layer & 512 neurons & Dropout 0.3 & RMSE & 0.2827 \\
 LSTM & Two-layer & 256 neurons & Dropout 0.4 & RMSE & 0.2818 \\
 LSTM & Two-layer & 512 neurons & Dropout 0.4 & RMSE & 0.2980 \\
 
-% ============================================================
-% XGBoost - MAE
-% ============================================================
-
+% XGBoost
 XGBoost & Tree boosting & Max depth 3 & 50 estimators  & MAE  & 0.1629 \\
 XGBoost & Tree boosting & Max depth 3 & 100 estimators & MAE  & 0.1827 \\
 XGBoost & Tree boosting & Max depth 3 & 150 estimators & MAE  & 0.1938 \\
-\textbf{XGBoost} & \textbf{Tree boosting} & \textbf{Max depth 5} & \textbf{50 estimators}  & \textbf{MAE}  & \textbf{0.1619} \\
+\textbf{XGBoost} & \textbf{Tree boosting} & \textbf{Max depth 5} & \textbf{50 estimators} & \textbf{MAE} & \textbf{0.1619} \\
 XGBoost & Tree boosting & Max depth 5 & 100 estimators & MAE  & 0.2027 \\
 XGBoost & Tree boosting & Max depth 5 & 150 estimators & MAE  & 0.2277 \\
-\textbf{XGBoost} & \textbf{Tree boosting} & \textbf{Max depth 7} & \textbf{50 estimators}  & \textbf{MAE}  & \textbf{0.1619} \\
+\textbf{XGBoost} & \textbf{Tree boosting} & \textbf{Max depth 7} & \textbf{50 estimators} & \textbf{MAE} & \textbf{0.1619} \\
 XGBoost & Tree boosting & Max depth 7 & 100 estimators & MAE  & 0.2023 \\
 XGBoost & Tree boosting & Max depth 7 & 150 estimators & MAE  & 0.2272 \\
-
-% ============================================================
-% XGBoost - MSE
-% ============================================================
 
 XGBoost & Tree boosting & Max depth 3 & 50 estimators  & MSE  & 0.0384 \\
 XGBoost & Tree boosting & Max depth 3 & 100 estimators & MSE  & 0.0478 \\
 XGBoost & Tree boosting & Max depth 3 & 150 estimators & MSE  & 0.0587 \\
-\textbf{XGBoost} & \textbf{Tree boosting} & \textbf{Max depth 5} & \textbf{50 estimators}  & \textbf{MSE}  & \textbf{0.0377} \\
+\textbf{XGBoost} & \textbf{Tree boosting} & \textbf{Max depth 5} & \textbf{50 estimators} & \textbf{MSE} & \textbf{0.0377} \\
 XGBoost & Tree boosting & Max depth 5 & 100 estimators & MSE  & 0.0541 \\
 XGBoost & Tree boosting & Max depth 5 & 150 estimators & MSE  & 0.0713 \\
 XGBoost & Tree boosting & Max depth 7 & 50 estimators  & MSE  & 0.0378 \\
 XGBoost & Tree boosting & Max depth 7 & 100 estimators & MSE  & 0.0543 \\
 XGBoost & Tree boosting & Max depth 7 & 150 estimators & MSE  & 0.0713 \\
 
-% ============================================================
-% XGBoost - RMSE
-% ============================================================
-
 XGBoost & Tree boosting & Max depth 3 & 50 estimators  & RMSE & 0.1959 \\
 XGBoost & Tree boosting & Max depth 3 & 100 estimators & RMSE & 0.2186 \\
 XGBoost & Tree boosting & Max depth 3 & 150 estimators & RMSE & 0.2423 \\
-\textbf{XGBoost} & \textbf{Tree boosting} & \textbf{Max depth 5} & \textbf{50 estimators}  & \textbf{RMSE} & \textbf{0.1943} \\
+\textbf{XGBoost} & \textbf{Tree boosting} & \textbf{Max depth 5} & \textbf{50 estimators} & \textbf{RMSE} & \textbf{0.1943} \\
 XGBoost & Tree boosting & Max depth 5 & 100 estimators & RMSE & 0.2326 \\
 XGBoost & Tree boosting & Max depth 5 & 150 estimators & RMSE & 0.2671 \\
 XGBoost & Tree boosting & Max depth 7 & 50 estimators  & RMSE & 0.1944 \\
@@ -217,3 +188,109 @@ XGBoost & Tree boosting & Max depth 7 & 150 estimators & RMSE & 0.2670 \\
 
 \end{longtable}
 \end{landscape}
+
+\subsection{Comparison of model performance}
+
+Following the detailed tuning results, Table~\ref{tab:model-comparison} summarises the best-performing configuration for each model. This summary table is used for cross-model comparison, while Table~\ref{tab:tuning-results} provides the detailed tuning evidence for model selection. Bold values indicate the best overall prediction performance across the full model set.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparative prediction performance of the best model configurations}
+\label{tab:model-comparison}
+\begin{tabular}{llcccp{5.0cm}}
+\toprule
+\textbf{Model} & \textbf{Type} & \textbf{MAE} & \textbf{MSE} & \textbf{RMSE} & \textbf{Interpretation} \\
+\midrule
+LSTM 
+& Deep learning 
+& 0.1995 
+& 0.0639 
+& 0.2527 
+& Best sequence-based model; captures long-term temporal dependencies. \\
+
+Bi-LSTM 
+& Deep learning 
+& 0.2034 
+& 0.0663 
+& 0.2575 
+& Bidirectional recurrent model; captures forward and backward temporal patterns. \\
+
+GRU 
+& Deep learning 
+& 0.2089 
+& 0.0720 
+& 0.2684 
+& Computationally efficient recurrent model with slightly higher errors. \\
+
+Random Forest 
+& Machine learning 
+& 0.2189 
+& 0.0775 
+& 0.2783 
+& Ensemble tree-based model; weaker than XGBoost and recurrent models. \\
+
+SVM 
+& Machine learning 
+& 0.2307 
+& 0.0774 
+& 0.2783 
+& Kernel-based model; weakest MAE performance among the tested models. \\
+
+XGBoost 
+& Machine learning 
+& \textbf{0.1619} 
+& \textbf{0.0377} 
+& \textbf{0.1943} 
+& Best overall model; strongest performance across all prediction metrics. \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.2cm}
+\footnotesize Source: Author's own calculations. Bold values indicate the best overall prediction performance.
+\end{table}
+
+The results in Table~\ref{tab:model-comparison} show that XGBoost achieves the strongest predictive performance across all three error metrics. It records the lowest MAE, MSE and RMSE values, indicating that it captures the non-linear structure of the dataset more effectively than the other models. Among the sequence-based deep learning models, LSTM performs best, followed by Bi-LSTM and GRU.
+
+These findings suggest that the most complex recurrent architecture is not necessarily the most accurate model for this dataset. Although LSTM, Bi-LSTM and GRU are designed to capture temporal dependencies, XGBoost appears to benefit from the engineered features and its ability to model non-linear relationships through gradient boosting. Therefore, the results support the use of both sequence-based and non-sequence-based models in financial time-series prediction.
+
+\subsection{Portfolio optimisation results}
+
+Table~\ref{tab:portfolio-comparison} presents the portfolio optimisation results for the sequence-based models. The optimisation stage focuses on LSTM, Bi-LSTM and GRU because these models generate sequential forecasts that can be incorporated into the mean-variance optimisation framework. Bold values indicate the best-performing result for each portfolio metric.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparative portfolio optimisation performance}
+\label{tab:portfolio-comparison}
+\begin{tabular}{lcccp{5.2cm}}
+\toprule
+\textbf{Model} & \textbf{Ending equity} & \textbf{Annualised Sharpe ratio} & \textbf{Annualised volatility} & \textbf{Interpretation} \\
+\midrule
+LSTM 
+& \textbf{470.03} 
+& 0.0604 
+& 0.000712 
+& Highest ending equity, indicating the strongest cumulative portfolio growth. \\
+
+Bi-LSTM 
+& 461.38 
+& \textbf{0.0719} 
+& \textbf{0.000594} 
+& Best risk-adjusted performance, with the highest Sharpe ratio and lowest volatility. \\
+
+GRU 
+& 424.55 
+& 0.0674 
+& \textbf{0.000594} 
+& Lower ending equity but competitive risk-adjusted performance and equally low volatility. \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.2cm}
+\footnotesize Source: Author's own calculations. Bold values indicate the best result for each portfolio metric.
+\end{table}
+
+The portfolio optimisation results show that prediction accuracy and portfolio performance are related but not identical. The LSTM-based portfolio achieves the highest ending equity value, increasing the initial investment from 100 to 470.03. However, the Bi-LSTM portfolio records the highest Sharpe ratio, suggesting that it provides the most favourable balance between return and risk. The GRU portfolio records the lowest ending equity, but its annualised volatility and Sharpe ratio remain competitive.
+
+This distinction is important because a model with lower prediction error does not automatically generate the strongest investment portfolio. Portfolio performance also depends on how prediction errors affect asset allocation, covariance structure, volatility and compounding over time. Therefore, machine learning models in financial applications should be evaluated not only through prediction metrics, but also through portfolio-level outcomes.
+
+From a Shariah-compliant investment perspective, these findings are relevant because the optimisation process is conducted within the BIST XKTUM universe. This means that the machine learning models are not being used to optimise a conventional unrestricted portfolio, but rather to improve asset allocation within an ethically screened equity universe. The results therefore show how computational methods can support Islamic portfolio management while remaining within Shariah-compliant investment boundaries.
