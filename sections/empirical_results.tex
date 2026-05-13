@@ -9,7 +9,10 @@ Although detailed hyperparameter-tuning tables increase article length, they are
 Bold rows in Table~\ref{tab:tuning-results} indicate the best-performing configuration within each model and error metric group. Since MAE, MSE and RMSE are error metrics, lower values indicate better predictive performance.
 
 \begin{landscape}
-\begin{longtable}{llcccc}
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{p{2.2cm}p{3cm}p{3.5cm}p{3.2cm}p{1.6cm}p{1.8cm}}
 \caption{Hyperparameter tuning results for LSTM and XGBoost models}
 \label{tab:tuning-results} \\
 \toprule
