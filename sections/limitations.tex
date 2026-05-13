@@ -1,0 +1,102 @@
+\section{Limitations and Future Research
+
+The empirical analysis is confined to Shariah-compliant equities in the BIST
+Participation All Index (BIST XKTUM) over 2007--2022. The Turkish market has
+a distinctive macroeconomic profile characterised by high inflation, significant
+exchange rate volatility and a participation finance regulatory framework that
+differs from those in Malaysia, the GCC countries or Indonesia. Consequently,
+the relative ranking of models and the magnitude of portfolio performance metrics
+may not transfer directly to other Islamic equity markets. Cross-market replication
+using the Dow Jones Islamic Market Index, the FTSE Bursa Malaysia Hijrah Shariah
+Index or GCC-listed Shariah-screened equities would allow researchers to assess
+whether the superiority of XGBoost for prediction and Bi-LSTM for risk-adjusted
+portfolio performance holds under different regulatory and macroeconomic conditions.
+
+The study also relies on a single Shariah screening standard, namely the BIST XKTUM
+classification issued under Turkish participation finance regulation. Different Shariah
+supervisory boards apply varying financial ratio thresholds and business activity
+screens, which means the composition of the investable universe --- and therefore the
+covariance structure of the portfolio --- may differ when alternative screening
+methodologies are applied. Future work could examine how screening methodology
+affects the statistical properties of the investment universe and the subsequent
+optimisation outcome, a question that is relevant for global Islamic fund managers
+who operate across multiple jurisdictions.
+
+\subsection{Portfolio optimisation framework}
+
+The optimisation stage is restricted to LSTM, Bi-LSTM and GRU because these
+architectures produce sequential return forecasts that fit naturally into the
+rolling mean-variance framework. The paper therefore cannot directly compare
+the portfolio-level value of XGBoost against the recurrent models, even though
+XGBoost achieves the strongest prediction accuracy. Future research should explore
+whether the point forecasts produced by gradient-boosting and ensemble models can
+be converted into portfolio inputs --- for example, through quantile regression or
+probabilistic forecasting --- and whether doing so produces portfolio outcomes
+comparable to those of sequence-based models.
+
+The optimisation constraints impose full investment and long-only weights, which
+is appropriate for Shariah-compliant portfolios where short selling raises additional
+jurisprudential concerns. However, the static nature of the framework means that
+portfolio weights are not adjusted in response to structural breaks or volatility
+regime changes within the sample period. A dynamic or regime-switching
+optimisation approach, in which weights are revised at regular rebalancing
+intervals conditional on updated model predictions, would better reflect the
+adaptive management requirements of Islamic investment funds and is a natural
+extension of the current framework.
+
+\subsection{Benchmarking and comparative evaluation}
+
+The portfolio evaluation compares LSTM, Bi-LSTM and GRU strategies against
+each other using ending equity, annualised Sharpe ratio \citep{sharpe1966mutual}
+and annualised volatility. The analysis does not include a comparison against
+passive or heuristic benchmarks such as the equal-weight portfolio or the
+BIST XKTUM index return. Without such benchmarks, it is not possible to
+determine how much of the portfolio performance is attributable to the machine
+learning forecasts and how much reflects the general upward trend in the index
+over the sample period. Future research should include the equal-weight portfolio
+\citep{taljaard2020equal, sen2023equal} and the Minimum Variance Portfolio as
+reference points, since both are transparent strategies that are fully compatible
+with Shariah-compliant constraints.
+
+\subsection{Feature engineering and alternative inputs}
+
+The feature set draws on price-derived variables including daily and 20-day returns,
+rolling volatility and standard technical indicators. The models do not incorporate
+macroeconomic variables such as exchange rates, commodity prices or inflation
+proxies, nor do they use text-based sentiment signals from news or financial
+disclosures. In Shariah-compliant equity markets, where firm eligibility depends
+partly on balance-sheet ratios that change at reporting dates, fundamental accounting
+data could also serve as an additional feature layer. Incorporating these data
+sources would extend the information set available to the models and may
+particularly benefit non-sequential models such as XGBoost, which already
+demonstrates strong performance on structured tabular inputs.
+
+\subsection{Model architecture}
+
+The deep learning models in this study are implemented as recurrent architectures
+without attention mechanisms. Transformer-based models, which replace recurrence
+with self-attention and have produced strong results in financial forecasting tasks,
+were not evaluated because their computational requirements at the scale of 163
+stocks over 15 years would substantially increase GPU time beyond what was
+feasible in this study. As GPU resources become more accessible, future work
+should benchmark transformer architectures \citep{vaswani2017attention} against
+the recurrent models evaluated here, particularly for longer lookback periods where
+self-attention may capture dependencies that LSTM and GRU gates attenuate over time.
+
+The hyperparameter search uses a predefined grid for each model class. More
+data-efficient tuning strategies such as Bayesian optimisation
+\citep{bergstra2012random} could identify strong configurations with fewer
+evaluations, which would be valuable for researchers under tighter computational
+constraints and would allow a wider architecture search in future Islamic
+computational finance studies.
+
+\subsection{Dimensionality reduction}
+
+PCA is applied as a linear dimensionality reduction step before model training.
+Because PCA assumes that the most informative directions in the data are those
+with the highest variance, it may not preserve non-linear cluster structures that
+exist among Shariah-compliant stocks with similar sector exposures or Shariah
+ratio profiles. Non-linear alternatives such as UMAP or autoencoder-based
+compression may better retain the complex relational structure of the 163-stock
+universe, and their effect on downstream prediction accuracy and portfolio
+construction is an open empirical question.
