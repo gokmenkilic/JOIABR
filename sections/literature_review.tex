@@ -9,3 +9,230 @@ While earlier studies on Islamic finance have emphasised the principles of risk 
 recent developments in fintech and computational finance create new opportunities to operationalise these principles through data-driven investment models. 
 Therefore, the use of machine learning and deep learning in Shariah-compliant portfolio management provides a practical bridge between the ethical foundations of Islamic finance and the technical requirements of modern financial markets.
 
+
+\subsection{Islamic Moral Economy and Shariah-compliant investment}
+
+Islamic finance is not reducible to the technical prohibition of riba. Its normative
+foundation rests on the concept of the Islamic Moral Economy, which argues that
+financial institutions and investment practices should serve social welfare, ethical
+justice and human-centred development rather than profit maximisation alone
+\citep{asutay2007conceptualisation, asutay2012conceptualising}. From this
+perspective, Shariah compliance is a necessary but not sufficient condition for
+Islamic investment: a portfolio may satisfy formal screening criteria while failing
+to realise the broader objectives of the Islamic financial system
+\citep{asutay2012conceptualising}. This tension is central to the growing body of
+work that evaluates whether Islamic financial institutions operate differently from
+their conventional counterparts in practice \citep{chong2009islamic,
+gheeraert2014islamic}.
+
+The foundational principles governing Islamic investment include the prohibition
+of riba (interest), gharar (excessive uncertainty) and maysir (speculation), as
+well as the requirement for asset-backed transactions and risk sharing between
+parties \citep{elgamal2006islamic, ayub2009understanding, iqbal2011islamic}.
+These principles restrict the investable universe through Shariah screening, which
+typically excludes firms with significant revenues from prohibited sectors such as
+alcohol, tobacco, weapons and conventional financial services, as well as firms
+whose debt or liquid asset ratios exceed specified thresholds
+\citep{hassan2005impact}. Shariah screening therefore creates a constrained
+investment universe that is smaller than the full market, and portfolio construction
+must be conducted within this ethical boundary.
+
+Evidence on the performance of Shariah-screened portfolios is mixed. Some
+studies find that Islamic equity indices generate comparable or superior risk-adjusted
+returns relative to conventional benchmarks over medium to long horizons,
+particularly during periods of financial stress when the exclusion of highly
+leveraged firms provides a degree of downside protection
+\citep{hassan2005impact}. Others argue that sector and liquidity constraints
+associated with Shariah screening may limit diversification and increase concentration
+risk. This performance debate motivates the use of quantitative optimisation
+methods that can extract diversification benefits within the screened universe,
+which is one of the objectives of the present paper.
+
+\subsection{Portfolio optimisation: from mean-variance to sparse methods}
+
+The theoretical foundation for portfolio optimisation is the mean-variance
+framework introduced by \citet{markowitz1952portfolio}. The central insight is
+that diversification across imperfectly correlated assets can reduce portfolio risk
+for a given level of expected return. The efficient frontier represents the set of
+portfolios that are optimal in this sense, and rational investors should choose
+portfolios on the frontier according to their risk preferences. This framework
+has been applied across conventional and Islamic finance contexts, since the
+mathematical structure of the optimisation is independent of the ethical
+composition of the investable universe.
+
+Despite its theoretical appeal, the mean-variance framework is sensitive to
+estimation error. Small changes in expected return or covariance estimates can
+produce large changes in optimal portfolio weights, leading to concentrated and
+unstable allocations \citep{michaud1989markowitz}. This problem is especially
+acute in large equity universes such as the BIST XKTUM, where the covariance
+matrix must be estimated from historical data across a large number of assets.
+Several responses to this challenge have been proposed in the literature,
+including shrinkage estimation of the covariance matrix
+\citep{ledoit2004honey}, the use of equal weights as a robust alternative
+\citep{taljaard2020equal, sen2023equal}, and the application of regularisation
+methods that penalise portfolio complexity and encourage sparse asset selection.
+
+Regularisation approaches have gained particular attention in the computational
+finance literature. \citet{tibshirani1996regression} introduced the LASSO
+method, which applies an L1 penalty to regression coefficients to encourage
+sparsity. DeMiguel et al. applied this principle to portfolio optimisation, showing
+that L1-regularised portfolios can reduce the number of active positions and
+limit estimation error without sacrificing out-of-sample performance. Sparse
+portfolio construction is especially relevant in Shariah-compliant investing,
+where the universe may be large but liquidity varies substantially across assets,
+making concentrated and parsimonious allocation strategies practically important.
+
+\subsection{Machine learning for stock price prediction}
+
+The application of machine learning to financial prediction has grown substantially
+since the early 2000s. Recurrent neural networks were among the first architectures
+to be applied to financial time series, motivated by their ability to model
+sequential dependencies in data where historical patterns influence future values.
+The Long Short-Term Memory (LSTM) network, introduced by
+\citet{hochreiter1997long}, addresses the vanishing gradient problem that limited
+earlier recurrent architectures by introducing gating mechanisms that regulate
+information flow across long sequences. LSTM has been applied to stock price
+prediction across multiple markets and has consistently demonstrated competitive
+performance relative to simpler time-series models
+\citep{zhang2023stock, lu2023lstm}.
+
+Bidirectional LSTM (Bi-LSTM) extends the LSTM architecture by processing
+input sequences in both forward and backward directions and concatenating the
+resulting hidden states at each time step \citep{schuster1997bidirectional}.
+This allows the model to draw on both historical and future context within
+the training window, which may be advantageous when the informational
+content of the sequence is not strictly unidirectional. Bi-LSTM has been applied
+to financial forecasting tasks including stock return prediction and cryptocurrency
+price modelling, and evidence suggests that bidirectional processing can improve
+accuracy relative to standard LSTM in some settings
+\citep{murugesan2022bilstm, hamayel2021bilstm}.
+
+The Gated Recurrent Unit (GRU) was proposed by \citet{cho2014learning} as
+a computationally simpler alternative to LSTM. GRU merges the cell state
+and hidden state into a single vector and uses update and reset gates rather
+than the three-gate structure of LSTM. This reduces the number of parameters
+and typically shortens training time without substantially sacrificing the
+ability to model long-range dependencies. Comparative studies have found
+that GRU and LSTM produce similar prediction accuracy across a range of
+financial time-series tasks, with GRU offering an efficiency advantage in
+resource-constrained settings \citep{hamayel2021bilstm}.
+
+Non-sequential machine learning models have also been widely applied to stock
+price prediction. \citet{breiman2001random} introduced Random Forest as an
+ensemble learning method that trains multiple decision trees on random subsets
+of features, producing predictions through majority voting or averaging. Random
+Forest is robust to overfitting and performs well with high-dimensional inputs,
+but it does not model temporal dependencies explicitly and requires that the
+sequential structure of financial data be captured through feature engineering.
+Support Vector Machines (SVM), introduced by \citet{cortes1995support},
+identify an optimal hyperplane in the feature space and can handle non-linear
+relationships through kernel functions. SVM has been applied to financial
+prediction tasks including stock price classification and regression
+\citep{ji2022svm}, but it can be sensitive to hyperparameter choices and
+computationally demanding on large datasets.
+
+Extreme Gradient Boosting (XGBoost) was introduced by \citet{chen2016xgboost}
+as a scalable and regularised gradient boosting algorithm that builds an ensemble
+of decision trees sequentially, with each tree correcting the errors of its
+predecessor. XGBoost incorporates built-in L1 and L2 regularisation, handles
+missing values natively and benefits from GPU-accelerated computation. It has
+achieved strong results across financial prediction benchmarks, including stock
+price regression and fraud detection \citep{wu2023xgboost, zhu2023lstmxgboost}.
+A key advantage relative to recurrent models is that XGBoost processes engineered
+feature vectors rather than sequential inputs, which makes it well suited to
+datasets where informative features have been derived from the raw price series
+through feature engineering.
+
+Comparative studies that evaluate multiple model types on the same financial
+dataset are particularly informative for model selection. Evidence from such
+studies generally suggests that no single model dominates across all datasets
+and evaluation criteria \citep{zhang2023stock, kuang2023comparison}. Recurrent
+models tend to perform well when temporal dependencies are strong and the
+prediction horizon is medium to long term. Tree-based ensemble models tend
+to perform well when the dataset contains informative engineered features and
+non-linear interactions among predictors. This observation directly motivates
+the six-model comparison conducted in this paper.
+
+\subsection{Machine learning in portfolio optimisation}
+
+Bridging prediction and portfolio construction is more complex than it might
+appear, because a model with strong forecasting accuracy does not necessarily
+generate a portfolio with superior risk-adjusted performance. The relationship
+between prediction error and portfolio performance depends on the distribution
+of errors across assets, the covariance structure of the portfolio, and how
+prediction errors compound over time \citep{brandt2010portfolio}. Several
+papers have attempted to directly integrate machine learning predictions into
+mean-variance optimisation, with mixed evidence on whether improved forecasting
+accuracy translates into improved portfolio outcomes.
+
+\citet{lu2023lstm} integrates LSTM-based return forecasts into portfolio
+allocation and demonstrates that LSTM predictions can support cumulative
+portfolio growth in Chinese equity markets. Studies using Bi-LSTM and GRU
+for portfolio management have reported similar findings, although the relative
+advantage over simpler baselines varies with the market and sample period
+\citep{hamayel2021bilstm}. The present paper contributes to this literature
+by evaluating all three sequence-based architectures within the same
+Shariah-compliant equity universe and under identical optimisation conditions,
+which enables a direct and controlled comparison of their portfolio-level usefulness.
+
+A related strand of literature examines sparse portfolio construction, where
+the objective is to identify a small subset of assets that captures the risk-return
+efficiency of the broader universe. DeMiguel et al. show that L1-penalised
+portfolios can outperform the 1/N equal-weight strategy and the unconstrained
+mean-variance portfolio in out-of-sample testing when the estimation period
+is limited relative to the number of assets. In large Islamic equity universes,
+where investors may face constraints on the number of assets they can monitor
+or trade, sparse optimisation methods are practically relevant and have received
+limited direct attention in the Islamic finance literature.
+
+\subsection{Islamic fintech and computational investment management}
+
+The intersection of fintech and Islamic finance has attracted growing scholarly
+attention, particularly in the context of financial inclusion, ethical digital
+payment systems and Shariah-compliant crowdfunding platforms
+\citep{rabbani2021islamic, hasan2020fintech, unal2022fintech}. However,
+a majority of this literature remains conceptual or survey-based, and the
+application of advanced computational methods to Islamic investment
+management has received limited empirical treatment.
+
+\citet{unal2022fintech} provide a retrospective survey of fintech development
+in Islamic finance and argue that digitisation and machine learning create new
+opportunities to operationalise Shariah-compliant investment principles, but
+that empirical applications remain rare. \citet{hasan2020fintech} similarly
+identify the lack of computational investment tools as a gap in the Islamic
+fintech agenda. Recent work by \citet{rabbani2021islamic} demonstrates that
+Islamic fintech platforms have begun to move beyond payments and into
+investment advisory and portfolio management services, but the underlying
+analytical models are rarely disclosed or evaluated in the academic literature.
+
+The Turkish market provides a particularly relevant setting for this analysis.
+Turkey has a large Muslim-majority population, an established participation
+banking sector and a dedicated Islamic equity index in the BIST XKTUM.
+The Islamic fintech ecosystem in Turkey has expanded in recent years, supported
+by regulatory initiatives and the growth of digital participation finance platforms
+\citep{sakarya2021fintech}. Despite this, the academic literature on Turkish
+Islamic investment management and computational portfolio optimisation using
+BIST XKTUM data remains limited, which further motivates the empirical
+contribution of this paper.
+
+\subsection{Research gap and contribution}
+
+The review identifies three specific gaps that this paper addresses. First, while
+machine learning models have been applied to stock prediction in conventional
+markets, their comparative evaluation within a Shariah-compliant equity universe
+using large-scale Turkish data is largely absent from the literature. Second,
+existing studies that integrate ML predictions into portfolio optimisation rarely
+apply L1 regularisation for sparse asset selection or evaluate portfolio outcomes
+using Sharpe ratio and annualised volatility alongside terminal equity. Third,
+the Islamic fintech literature has called for empirical evidence on how computational
+investment tools can be applied within Shariah-compliant constraints, but few
+papers deliver such evidence at the scale of the BIST XKTUM universe.
+
+This paper addresses these gaps by providing a systematic, hyperparameter-tuned
+comparison of six machine learning and deep learning models for stock price
+prediction, followed by a portfolio optimisation stage that uses the predicted
+returns within a sparse mean-variance framework applied to a Shariah-screened
+Turkish equity universe. The results contribute to the Islamic fintech literature
+by showing how prediction accuracy and portfolio performance are related but
+distinct criteria, and by identifying which model types are most useful for
+each purpose in the Shariah-compliant setting.
